@@ -1,0 +1,2346 @@
+# baseURI: http://rdf.bg/geometry.ttl
+
+@prefix : <http://rdf.bg/geometry.ttl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://rdf.bg/geometry.ttl>
+  rdf:type owl:Ontology ;
+.
+:World
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Environment ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :matrix
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :matrix
+                   ] ;
+.
+:View
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Environment ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :matrix
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :matrix
+                   ] ;
+.
+:Vector3
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Vector ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "3"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :coordinates
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :x
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :x
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :y
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :y
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :z
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :z
+                   ] ;
+.
+:Vector
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Mathematics ;
+.
+:TriangleCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :coordinates
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "9"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :coordinates
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :pointReferences
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "3"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :pointReferences
+                   ] ;
+.
+:Transformation
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :object
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :matrix
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :matrix
+                   ] ;
+.
+:TransitionalCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :length
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :radiusI
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :radiusI
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :radiusII
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :radiusII
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :direction
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :direction
+                   ] ;
+.
+:Texture
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Appearance ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :type
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :offsetX
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :offsetY
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :scalingX
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :scalingY
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :rotation
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "3"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :origin
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :name
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :name
+                   ] ;
+.
+:SweptBlend
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :connectionMap
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :bottomPolygon
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :direction
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :topPolygon
+                   ] ;
+.
+:SweptAreaSolidTapered
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :path
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :direction
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :direction
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :sweptArea
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :sweptAreaOpenings
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :sweptAreaEnd
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :sweptAreaEndOpenings
+                   ] ;
+.
+:SweptAreaSolidSet
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :path
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :direction
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :direction
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :sweptAreaSet
+                   ] ;
+.
+:SweptAreaSolid
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :path
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :direction
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :direction
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :sweptArea
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :sweptAreaOpenings
+                   ] ;
+.
+:SurfaceBySweptCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :direction
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :sweptArea
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :sweptAreaOpenings
+                   ] ;
+.
+:SpotLight
+  rdf:type owl:Class ;
+  rdfs:subClassOf :DirectLight ;
+.
+:Spiral
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :radius
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :start
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :size
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :height
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :offsetZ
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :segmentationParts
+                   ] ;
+.
+:Sphere
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :radius
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :segmentationParts
+                   ] ;
+.
+:SolidLine
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :coordinates
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "6"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :coordinates
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :thickness
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+.
+:SkewedFrustumCone
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :radius
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :height
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetX
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetX
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetY
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetY
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :factor
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :segmentationParts
+                   ] ;
+.
+:SkewedCone
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :radius
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :height
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetX
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetX
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetY
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetY
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :segmentationParts
+                   ] ;
+.
+:SineCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :TransitionalCurve ;
+.
+:Shadow
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_2 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :type
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :plane
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :object
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :planeRefDirection
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :planeRefDirection
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :lightDirection
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :lightDirection
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :lightPoint
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :lightPoint
+                   ] ;
+.
+:Repetition
+  rdf:type owl:Class ;
+  rdfs:subClassOf :GeometricItem ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :count
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :object
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :matrix
+                   ] ;
+.
+:RectangleCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :height
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :width
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetX
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetX
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetY
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetY
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetZ
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetZ
+                   ] ;
+.
+:RationalBezierSurface
+  rdf:type owl:Class ;
+  rdfs:subClassOf :BezierSurface ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "4"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :weights
+                   ] ;
+.
+:RationalBezierCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :BezierCurve ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "2"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :weights
+                   ] ;
+.
+:Pyramid
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :length
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :height
+                   ] ;
+.
+:Projection
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Environment ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :matrix
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :matrix
+                   ] ;
+.
+:Prism
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :length
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :height
+                   ] ;
+.
+:PolyLine3D
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "2"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :pointReferences
+                   ] ;
+.
+:Polygon3D
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :lineParts
+                   ] ;
+.
+:Polygon2D
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :lineParts
+                   ] ;
+.
+:PointLight
+  rdf:type owl:Class ;
+  rdfs:subClassOf :DirectLight ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :position
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :position
+                   ] ;
+.
+:Point3D
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_0 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :points
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "3"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :points
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :coordinates
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "3"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :coordinates
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :x
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :x
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :y
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :y
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :z
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :z
+                   ] ;
+.
+:Plane
+  rdf:type owl:Class ;
+  rdfs:subClassOf :GeometricItem ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :A
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :B
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :C
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :D
+                   ] ;
+.
+:Parabola
+  rdf:type owl:Class ;
+  rdfs:subClassOf :ConicCurve ;
+.
+:NURBSSurface
+  rdf:type owl:Class ;
+  rdfs:subClassOf :BSplineSurface ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "4"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :weights
+                   ] ;
+.
+:NURBSCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :BSplineCurve ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "2"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :weights
+                   ] ;
+.
+:MatrixMultiplication
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Matrix ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :firstMatrix
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :secondMatrix
+                   ] ;
+.
+:Matrix
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Mathematics ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :coordinates
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "12"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :coordinates
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_11
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_11
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_12
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_12
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_13
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_13
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_21
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_21
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_22
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_22
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_23
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_23
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_31
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_31
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_32
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_32
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_33
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_33
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_41
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_41
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_42
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_42
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_43
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :_43
+                   ] ;
+.
+:Mathematics
+  rdf:type owl:Class ;
+.
+:Material
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Appearance ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :textures
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "2"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :textures
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :color
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :color
+                   ] ;
+.
+:Line3Dn
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :points
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "6"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :points
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :x0
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :x0
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :y0
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :y0
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :z0
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :z0
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :x1
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :x1
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :y1
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :y1
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :z1
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :z1
+                   ] ;
+.
+:Line3D
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "6"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :points
+                   ] ;
+.
+:Light
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Environment ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :color
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :color
+                   ] ;
+.
+:InverseMatrix
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Matrix ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :matrix
+                   ] ;
+.
+:Hyperbola
+  rdf:type owl:Class ;
+  rdfs:subClassOf :ConicCurve ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :b
+                   ] ;
+.
+:GeometricItem
+  rdf:type owl:Class ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :material
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :material
+                   ] ;
+.
+:FrustumCone
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :radius
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :height
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :factor
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :segmentationParts
+                   ] ;
+.
+:Face2DSet
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_2 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :setting
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :setting
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :polygons
+                   ] ;
+.
+:Face2D
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_2 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :setting
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :setting
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :outerPolygon
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :innerPolygons
+                   ] ;
+.
+:ExtrusionAreaSolidSet
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :extrusionDirection
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "3"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :extrusionDirection
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :extrusionLength
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :extrusionAreaSet
+                   ] ;
+.
+:ExtrusionAreaSolid
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :extrusionDirection
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "3"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :extrusionDirection
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :extrusionLength
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :extrusionArea
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :extrusionAreaOpenings
+                   ] ;
+.
+:ExtrudedPolygonTapered
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :extrusionLength
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "6"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :points
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :openingPoints
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :openingSizes
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :polygonDirection
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "3"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :polygonDirection
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "6"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :pointsEnd
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :openingPointsEnd
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :openingSizesEnd
+                   ] ;
+.
+:ExtrudedPolygon
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :extrusionLength
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "6"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :points
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :openingPoints
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :openingSizes
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :polygonDirection
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "3"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :polygonDirection
+                   ] ;
+.
+:Environment
+  rdf:type owl:Class ;
+.
+:EllipticCone
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :radiusI
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :radiusII
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :height
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+.
+:Ellipse
+  rdf:type owl:Class ;
+  rdfs:subClassOf :ConicCurve ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :b
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :radiusI
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :radiusI
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :radiusII
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :radiusII
+                   ] ;
+.
+:Dummy
+  rdf:type owl:Class ;
+  rdfs:subClassOf :GeometricItem ;
+.
+:DirectLight
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Light ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :attenuation
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :attenuation
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :range
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :range
+                   ] ;
+.
+:DirectionalLight
+  rdf:type owl:Class ;
+  rdfs:subClassOf :DirectLight ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :direction
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :direction
+                   ] ;
+.
+:Cylinder
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :length
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :radius
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+.
+:CubicParabola
+  rdf:type owl:Class ;
+  rdfs:subClassOf :TransitionalCurve ;
+.
+:Cube
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :length
+                   ] ;
+.
+:CosineCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :TransitionalCurve ;
+.
+:Copy
+  rdf:type owl:Class ;
+  rdfs:subClassOf :GeometricItem ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :instanceReference
+                   ] ;
+.
+:ConicCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :a
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :start
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :start
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :size
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :size
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+.
+:Cone
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :radius
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :height
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+.
+:ColorComponent
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Appearance ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :R
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :G
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :B
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :W
+                   ] ;
+.
+:Color
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Appearance ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :ambient
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :ambient
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :diffuse
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :diffuse
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :specular
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :specular
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :emissive
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :emissive
+                   ] ;
+.
+:Collection
+  rdf:type owl:Class ;
+  rdfs:subClassOf :GeometricItem ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :name
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :name
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :objects
+                   ] ;
+.
+:ClothoidCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :TransitionalCurve ;
+.
+:Clothoid
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :length
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :radius
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :radius
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :orientation
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :orientation
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :A
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :direction
+                   ] ;
+.
+:Clipping
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :type
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :plane
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :object
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :object
+                   ] ;
+.
+:ClippedPyramid
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "12"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :points
+                   ] ;
+.
+:Circle
+  rdf:type owl:Class ;
+  rdfs:subClassOf :ConicCurve ;
+.
+:BSplineSurface
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_2 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :uCount
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :vCount
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :uDegree
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :uDegree
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :vDegree
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :vDegree
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationLength
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationLength
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "2"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :uKnots
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "2"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :vKnots
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :uKnotMultiplicities
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :vKnotMultiplicities
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :setting
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :setting
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "4"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :controlPoints
+                   ] ;
+.
+:BSplineCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :degree
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :degree
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationLength
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationLength
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "2"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :knots
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :knotMultiplicities
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :setting
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :setting
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "2"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :controlPoints
+                   ] ;
+.
+:Box
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :length
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :width
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :height
+                   ] ;
+.
+:BoundaryRepresentation
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :vertices
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :textureCoordinates
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :indices
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :consistancyCheck
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :consistancyCheck
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :faces
+                   ] ;
+.
+:BooleanOperation
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :type
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :setting
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :setting
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :firstObject
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :firstObject
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :secondObject
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :secondObject
+                   ] ;
+.
+:BooleanOperation2D
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_2 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :type
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :firstObject
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :firstObject
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :secondObject
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :secondObject
+                   ] ;
+.
+:BlossCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :TransitionalCurve ;
+.
+:Blend
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_3 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :height
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :bottomPolygon
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :topPolygon
+                   ] ;
+.
+:BiQuadraticParabola
+  rdf:type owl:Class ;
+  rdfs:subClassOf :TransitionalCurve ;
+.
+:BezierSurface
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_2 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :uCount
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :vCount
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationLength
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationLength
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :setting
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :setting
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "4"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :controlPoints
+                   ] ;
+.
+:BezierCurve
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationLength
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationLength
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segmentationParts
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "2"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :controlPoints
+                   ] ;
+.
+:Arc3D
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :radius
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :start
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :size
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :segmentationParts
+                   ] ;
+.
+:Appearance
+  rdf:type owl:Class ;
+.
+:AmbientLight
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Light ;
+.
+:Alignment
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetX
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :offsetX
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :type
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :horizontal
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :horizontal
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :vertical
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :vertical
+                   ] ;
+.
+:AlignedSegments
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segments
+                   ] ;
+.
+:AlignedSegment
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Dim_1 ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :offsetX
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "1"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :offsetY
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :length
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :length
+                   ] ;
+  rdfs:subClassOf  [ a                owl:Restriction ;
+                     owl:cardinality  "3"^^xsd:nonNegativeInteger ;
+                     owl:onProperty  :tangentDirectionStart
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:minCardinality  "0"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segment
+                   ] ;
+  rdfs:subClassOf  [ a                   owl:Restriction ;
+                     owl:maxCardinality  "1"^^xsd:nonNegativeInteger ;
+                        owl:onProperty  :segment
+                   ] ;
+.
+:Dim_3
+  rdf:type owl:Class ;
+  rdfs:subClassOf :GeometricItem ;
+.
+:Dim_2
+  rdf:type owl:Class ;
+  rdfs:subClassOf :GeometricItem ;
+.
+:Dim_1
+  rdf:type owl:Class ;
+  rdfs:subClassOf :GeometricItem ;
+.
+:Dim_0
+  rdf:type owl:Class ;
+  rdfs:subClassOf :GeometricItem ;
+.
+:vertical
+  rdf:type owl:ObjectProperty ;
+.
+:topPolygon
+  rdf:type owl:ObjectProperty ;
+.
+:textures
+  rdf:type owl:ObjectProperty ;
+.
+:sweptAreaSet
+  rdf:type owl:ObjectProperty ;
+.
+:sweptAreaOpenings
+  rdf:type owl:ObjectProperty ;
+.
+:sweptAreaEndOpenings
+  rdf:type owl:ObjectProperty ;
+.
+:sweptAreaEnd
+  rdf:type owl:ObjectProperty ;
+.
+:sweptArea
+  rdf:type owl:ObjectProperty ;
+.
+:specular
+  rdf:type owl:ObjectProperty ;
+.
+:segments
+  rdf:type owl:ObjectProperty ;
+.
+:segment
+  rdf:type owl:ObjectProperty ;
+.
+:secondObject
+  rdf:type owl:ObjectProperty ;
+.
+:secondMatrix
+  rdf:type owl:ObjectProperty ;
+.
+:position
+  rdf:type owl:ObjectProperty ;
+.
+:polygons
+  rdf:type owl:ObjectProperty ;
+.
+:pointReferences
+  rdf:type owl:ObjectProperty ;
+.
+:planeRefDirection
+  rdf:type owl:ObjectProperty ;
+.
+:plane
+  rdf:type owl:ObjectProperty ;
+.
+:path
+  rdf:type owl:ObjectProperty ;
+.
+:outerPolygon
+  rdf:type owl:ObjectProperty ;
+.
+:objects
+  rdf:type owl:ObjectProperty ;
+.
+:object
+  rdf:type owl:ObjectProperty ;
+.
+:matrix
+  rdf:type owl:ObjectProperty ;
+.
+:material
+  rdf:type owl:ObjectProperty ;
+.
+:lineParts
+  rdf:type owl:ObjectProperty ;
+.
+:lightPoint
+  rdf:type owl:ObjectProperty ;
+.
+:lightDirection
+  rdf:type owl:ObjectProperty ;
+.
+:innerPolygons
+  rdf:type owl:ObjectProperty ;
+.
+:horizontal
+  rdf:type owl:ObjectProperty ;
+.
+:firstObject
+  rdf:type owl:ObjectProperty ;
+.
+:firstMatrix
+  rdf:type owl:ObjectProperty ;
+.
+:faces
+  rdf:type owl:ObjectProperty ;
+.
+:extrusionAreaSet
+  rdf:type owl:ObjectProperty ;
+.
+:extrusionAreaOpenings
+  rdf:type owl:ObjectProperty ;
+.
+:extrusionArea
+  rdf:type owl:ObjectProperty ;
+.
+:emissive
+  rdf:type owl:ObjectProperty ;
+.
+:direction
+  rdf:type owl:ObjectProperty ;
+.
+:diffuse
+  rdf:type owl:ObjectProperty ;
+.
+:controlPoints
+  rdf:type owl:ObjectProperty ;
+.
+:color
+  rdf:type owl:ObjectProperty ;
+.
+:bottomPolygon
+  rdf:type owl:ObjectProperty ;
+.
+:ambient
+  rdf:type owl:ObjectProperty ;
+.
+:z1
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:y1
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:x1
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:z0
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:y0
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:x0
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:z
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:y
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:x
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:W
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:width
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:weights
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:vKnotMultiplicities
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:vKnots
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:vertices
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:vDegree
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:vCount
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:uKnotMultiplicities
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:uKnots
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:uDegree
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:uCount
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:type
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:thickness
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:textureCoordinates
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:tangentDirectionStart
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:start
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:size
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:setting
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:segmentationParts
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:segmentationLength
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:scalingY
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:scalingX
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:R
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:rotation
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:range
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:radiusII
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:radiusI
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:radius
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:polygonDirection
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:pointsEnd
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:points
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:origin
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:orientation
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:openingSizesEnd
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:openingSizes
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:openingPointsEnd
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:openingPoints
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:offsetZ
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:offsetY
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:offsetX
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:name
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+.
+:length
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:knots
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:knotMultiplicities
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:instanceReference
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:indices
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:height
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:G
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:factor
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:extrusionLength
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:extrusionDirection
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:D
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:degree
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:C
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:count
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:coordinates
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:consistancyCheck
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:connectionMap
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:text
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+.
+:isMappedItem
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:expressID
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:integer ;
+.
+:B
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:b
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:attenuation
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:A
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:a
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:_43
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:_42
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:_41
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:_33
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:_32
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:_31
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:_23
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:_22
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:_21
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:_13
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:_12
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+:_11
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:double ;
+.
+ 
