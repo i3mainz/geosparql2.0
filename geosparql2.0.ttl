@@ -114,6 +114,11 @@ dc:source rdf:type owl:AnnotationProperty ;
 #    Datatypes
 #################################################################
 
+###  http://www.opengis.net/ont/geosparql#covJSONLiteral
+geo:covJSONLiteral rdf:type rdfs:Datatype ;
+                   rdfs:label "Coverage JSON Literal"@en .
+
+
 ###  http://www.opengis.net/ont/geosparql#dxfLiteral
 geo:dxfLiteral rdf:type rdfs:Datatype ;
                rdfs:label "DXF Literal"@en .
@@ -127,6 +132,16 @@ geo:geoHashLiteral rdf:type rdfs:Datatype ;
 ###  http://www.opengis.net/ont/geosparql#geoJSONLiteral
 geo:geoJSONLiteral rdf:type rdfs:Datatype ;
                    rdfs:label "GeoJSON Literal"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#geoRSSLiteral
+geo:geoRSSLiteral rdf:type rdfs:Datatype ;
+                  rdfs:label "GeoRSS Literal"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#geoTiffLiteral
+geo:geoTiffLiteral rdf:type rdfs:Datatype ;
+                   rdfs:label "GeoTIFF Literal"@en .
 
 
 ###  http://www.opengis.net/ont/geosparql#geoURILiteral
@@ -214,6 +229,11 @@ geo:wktLiteral rdf:type rdfs:Datatype ;
                skos:prefLabel "Well-known Text Literal"@en .
 
 
+###  http://www.opengis.net/ont/geosparql#x3dLiteral
+geo:x3dLiteral rdf:type rdfs:Datatype ;
+               rdfs:label "X3D Literal"@en .
+
+
 ###  http://www.w3.org/2001/XMLSchema#date
 xsd:date rdf:type rdfs:Datatype .
 
@@ -246,6 +266,11 @@ geo:defaultGeometry rdf:type owl:ObjectProperty ;
       It is Usually the most detailed geometry.
     """@en ;
                     skos:prefLabel "defaultGeometry"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#dwithin
+geo:dwithin rdf:type owl:ObjectProperty ;
+            rdfs:label "dwithin" .
 
 
 ###  http://www.opengis.net/ont/geosparql#ehContains
@@ -471,6 +496,11 @@ geo:hasGeometry rdf:type owl:ObjectProperty ;
       A spatial representation for a given feature.
     """@en ;
                 skos:prefLabel "hasGeometry"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#intersects3D
+geo:intersects3D rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf geo:sfIntersects .
 
 
 ###  http://www.opengis.net/ont/geosparql#rcc8dc
@@ -883,9 +913,22 @@ geo:sfWithin rdf:type owl:ObjectProperty ;
 #    Data properties
 #################################################################
 
+###  http://www.opengis.net/ont/geosparql#area
+geo:area rdf:type owl:DatatypeProperty ;
+         rdfs:label "area" .
+
+
+###  http://www.opengis.net/ont/geosparql#asCovJSON
+geo:asCovJSON rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf geo:hasSerialization ;
+              rdfs:domain geo:Coverage ;
+              rdfs:range geo:covJSONLiteral .
+
+
 ###  http://www.opengis.net/ont/geosparql#asDXF
 geo:asDXF rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf geo:hasSerialization .
+          rdfs:subPropertyOf geo:hasSerialization ;
+          rdfs:range geo:dxfLiteral .
 
 
 ###  http://www.opengis.net/ont/geosparql#asGML
@@ -913,7 +956,9 @@ geo:asGML rdf:type owl:DatatypeProperty ;
 
 ###  http://www.opengis.net/ont/geosparql#asGPX
 geo:asGPX rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf geo:hasSerialization .
+          rdfs:subPropertyOf geo:hasSerialization ;
+          rdfs:domain <http://www.opengis.net/ont/sf#Geometry> ;
+          rdfs:range geo:gpxLiteral .
 
 
 ###  http://www.opengis.net/ont/geosparql#asGeoBuf
@@ -923,22 +968,37 @@ geo:asGeoBuf rdf:type owl:DatatypeProperty ;
 
 ###  http://www.opengis.net/ont/geosparql#asGeoHash
 geo:asGeoHash rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf geo:hasSerialization .
+              rdfs:subPropertyOf geo:hasSerialization ;
+              rdfs:domain <http://www.opengis.net/ont/sf#Geometry> ;
+              rdfs:range geo:geoHashLiteral .
 
 
 ###  http://www.opengis.net/ont/geosparql#asGeoJSON
 geo:asGeoJSON rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf geo:hasSerialization .
+              rdfs:subPropertyOf geo:hasSerialization ;
+              rdfs:domain <http://www.opengis.net/ont/sf#Geometry> ;
+              rdfs:range geo:geoJSONLiteral .
 
 
 ###  http://www.opengis.net/ont/geosparql#asGeoRSS
 geo:asGeoRSS rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf geo:hasSerialization .
+             rdfs:subPropertyOf geo:hasSerialization ;
+             rdfs:domain <http://www.opengis.net/ont/sf#Geometry> ;
+             rdfs:range geo:geoRSSLiteral .
+
+
+###  http://www.opengis.net/ont/geosparql#asGeoTIFF
+geo:asGeoTIFF rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf geo:hasSerialization ;
+              rdfs:domain geo:Coverage ;
+              rdfs:range geo:geoTiffLiteral .
 
 
 ###  http://www.opengis.net/ont/geosparql#asGeoURI
 geo:asGeoURI rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf geo:hasSerialization .
+             rdfs:subPropertyOf geo:hasSerialization ;
+             rdfs:domain <http://www.opengis.net/ont/sf#Geometry> ;
+             rdfs:range geo:geoURILiteral .
 
 
 ###  http://www.opengis.net/ont/geosparql#asHexWKB
@@ -948,7 +1008,9 @@ geo:asHexWKB rdf:type owl:DatatypeProperty ;
 
 ###  http://www.opengis.net/ont/geosparql#asKML
 geo:asKML rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf geo:hasSerialization .
+          rdfs:subPropertyOf geo:hasSerialization ;
+          rdfs:domain <http://www.opengis.net/ont/sf#Geometry> ;
+          rdfs:range geo:kmlLiteral .
 
 
 ###  http://www.opengis.net/ont/geosparql#asLatLonText
@@ -963,22 +1025,29 @@ geo:asMVT rdf:type owl:DatatypeProperty ;
 
 ###  http://www.opengis.net/ont/geosparql#asPolyshape
 geo:asPolyshape rdf:type owl:DatatypeProperty ;
-                rdfs:subPropertyOf geo:hasSerialization .
+                rdfs:subPropertyOf geo:hasSerialization ;
+                rdfs:domain <http://www.opengis.net/ont/sf#Geometry> ;
+                rdfs:range geo:polyshapeLiteral .
 
 
 ###  http://www.opengis.net/ont/geosparql#asSVG
 geo:asSVG rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf geo:hasSerialization .
+          rdfs:subPropertyOf geo:hasSerialization ;
+          rdfs:domain <http://www.opengis.net/ont/sf#Geometry> ;
+          rdfs:range geo:svgLiteral .
 
 
 ###  http://www.opengis.net/ont/geosparql#asTopoJSON
 geo:asTopoJSON rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf geo:hasSerialization .
+               rdfs:subPropertyOf geo:hasSerialization ;
+               rdfs:domain <http://www.opengis.net/ont/sf#Geometry> ;
+               rdfs:range geo:topoJSONLiteral .
 
 
 ###  http://www.opengis.net/ont/geosparql#asWKB
 geo:asWKB rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf geo:hasSerialization .
+          rdfs:subPropertyOf geo:hasSerialization ;
+          rdfs:range geo:wkbLiteral .
 
 
 ###  http://www.opengis.net/ont/geosparql#asWKT
@@ -1006,7 +1075,9 @@ geo:asWKT rdf:type owl:DatatypeProperty ;
 
 ###  http://www.opengis.net/ont/geosparql#asX3D
 geo:asX3D rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf geo:hasSerialization .
+          rdfs:subPropertyOf geo:hasSerialization ;
+          rdfs:domain <http://www.opengis.net/ont/sf#Geometry> ;
+          rdfs:range geo:x3dLiteral .
 
 
 ###  http://www.opengis.net/ont/geosparql#coordinateDimension
@@ -1068,7 +1139,8 @@ geo:dimension rdf:type owl:DatatypeProperty ;
 ###  http://www.opengis.net/ont/geosparql#hasSerialization
 geo:hasSerialization rdf:type owl:DatatypeProperty ;
                      rdfs:domain geo:Geometry ;
-                     rdfs:range rdfs:Literal ;
+                     rdfs:range geo:geoURILiteral ,
+                                rdfs:Literal ;
                      dc:contributor "Matthew Perry" ;
                      dc:creator "OGC GeoSPARQL 1.0 Standard Working Group" ;
                      dc:date "2011-06-16"^^xsd:date ;
@@ -1085,6 +1157,26 @@ geo:hasSerialization rdf:type owl:DatatypeProperty ;
       Connects a geometry object with its text-based serialization.
     """@en ;
                      skos:prefLabel "has serialization"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#is3D
+geo:is3D rdf:type owl:DatatypeProperty ;
+         rdfs:label "is3D" .
+
+
+###  http://www.opengis.net/ont/geosparql#isClosed
+geo:isClosed rdf:type owl:DatatypeProperty ;
+             rdfs:label "isClosed" .
+
+
+###  http://www.opengis.net/ont/geosparql#isCollection
+geo:isCollection rdf:type owl:DatatypeProperty ;
+                 rdfs:label "isCollection" .
+
+
+###  http://www.opengis.net/ont/geosparql#isConvex
+geo:isConvex rdf:type owl:DatatypeProperty ;
+             rdfs:label "isConvex" .
 
 
 ###  http://www.opengis.net/ont/geosparql#isEmpty
@@ -1115,6 +1207,18 @@ geo:isEmpty rdf:type owl:DatatypeProperty ;
             skos:prefLabel "isEmpty"@en .
 
 
+###  http://www.opengis.net/ont/geosparql#isMeasured
+geo:isMeasured rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:label "isMeasured" .
+
+
+###  http://www.opengis.net/ont/geosparql#isRing
+geo:isRing rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:label "isRing" .
+
+
 ###  http://www.opengis.net/ont/geosparql#isSimple
 geo:isSimple rdf:type owl:DatatypeProperty ;
              rdfs:domain geo:Geometry ;
@@ -1138,6 +1242,17 @@ geo:isSimple rdf:type owl:DatatypeProperty ;
       points, such as self intersection or self tangency.
     """@en ;
              skos:prefLabel "isSimple"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#isValid
+geo:isValid rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:label "isValid" .
+
+
+###  http://www.opengis.net/ont/geosparql#length
+geo:length rdf:type owl:DatatypeProperty ;
+           rdfs:label "length" .
 
 
 ###  http://www.opengis.net/ont/geosparql#spatialDimension
@@ -1168,6 +1283,11 @@ geo:spatialDimension rdf:type owl:DatatypeProperty ;
 #################################################################
 #    Classes
 #################################################################
+
+###  http://www.opengis.net/ont/geosparql#Coverage
+geo:Coverage rdf:type owl:Class ;
+             rdfs:subClassOf geo:Geometry .
+
 
 ###  http://www.opengis.net/ont/geosparql#Feature
 geo:Feature rdf:type owl:Class ;
@@ -1222,6 +1342,16 @@ geo:Geometry rdf:type owl:Class ;
       it is superclass of all geometry types.
     """@en ;
              skos:prefLabel "Geometry"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#GridCoverage
+geo:GridCoverage rdf:type owl:Class ;
+                 rdfs:subClassOf geo:Coverage .
+
+
+###  http://www.opengis.net/ont/geosparql#GridCoverage2D
+geo:GridCoverage2D rdf:type owl:Class ;
+                   rdfs:subClassOf geo:GridCoverage .
 
 
 ###  http://www.opengis.net/ont/geosparql#SpatialObject
