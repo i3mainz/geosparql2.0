@@ -1,0 +1,336 @@
+/* Taken from http://www.w3.org/TR/rdf-sparql-query/#sparqlGrammar */
+
+Query	  ::=  	Prologue
+                    ( SelectQuery | ConstructQuery | DescribeQuery | AskQuery )
+Prologue	  ::=  	BaseDecl? PrefixDecl*
+BaseDecl	  ::=  	'BASE' IRI_REF
+PrefixDecl	  ::=  	'PREFIX' PNAME_NS IRI_REF
+SelectQuery	  ::=  	'SELECT' ( 'DISTINCT' | 'REDUCED' )? ( Var+ | '*' ) DatasetClause* WhereClause SolutionModifier
+ConstructQuery	  ::=  	'CONSTRUCT' ConstructTemplate DatasetClause* WhereClause SolutionModifier
+DescribeQuery	  ::=  	'DESCRIBE' ( VarOrIRIref+ | '*' ) DatasetClause* WhereClause? SolutionModifier
+AskQuery	  ::=  	'ASK' DatasetClause* WhereClause
+DatasetClause	  ::=  	'FROM' ( DefaultGraphClause | NamedGraphClause )
+DefaultGraphClause	  ::=  	SourceSelector
+NamedGraphClause	  ::=  	'NAMED' SourceSelector
+SourceSelector	  ::=  	IRIref
+WhereClause	  ::=  	'WHERE'? GroupGraphPattern
+SolutionModifier	  ::=  	OrderClause? LimitOffsetClauses?
+LimitOffsetClauses	  ::=  	( LimitClause OffsetClause? | OffsetClause LimitClause? )
+OrderClause	  ::=  	'ORDER' 'BY' OrderCondition+
+OrderCondition	  ::=  	( ( 'ASC' | 'DESC' ) BrackettedExpression )
+                                | ( Constraint | Var )
+LimitClause	  ::=  	'LIMIT' INTEGER
+OffsetClause	  ::=  	'OFFSET' INTEGER
+GroupGraphPattern	  ::=  	'{' TriplesBlock? ( ( GraphPatternNotTriples | Filter ) '.'? TriplesBlock? )* '}'
+TriplesBlock	  ::=  	TriplesSameSubject ( '.' TriplesBlock? )?
+GraphPatternNotTriples	  ::=  	OptionalGraphPattern | GroupOrUnionGraphPattern | GraphGraphPattern
+OptionalGraphPattern	  ::=  	'OPTIONAL' GroupGraphPattern
+GraphGraphPattern	  ::=  	'GRAPH' VarOrIRIref GroupGraphPattern
+GroupOrUnionGraphPattern	  ::=  	GroupGraphPattern ( 'UNION' GroupGraphPattern )*
+Filter	  ::=  	'FILTER' Constraint
+Constraint	  ::=  	BrackettedExpression | BuiltInCall | FunctionCall
+FunctionCall	  ::=  	IRIref ArgList
+ArgList	  ::=  	( NIL | '(' Expression ( ',' Expression )* ')' )
+ConstructTemplate	  ::=  	'{' ConstructTriples? '}'
+ConstructTriples	  ::=  	TriplesSameSubject ( '.' ConstructTriples? )?
+TriplesSameSubject	  ::=  	VarOrTerm PropertyListNotEmpty |	TriplesNode PropertyList
+PropertyListNotEmpty	  ::=  	Verb ObjectList ( ';' ( Verb ObjectList )? )*
+PropertyList	  ::=  	PropertyListNotEmpty?
+ObjectList	  ::=  	Object ( ',' Object )*
+Object	  ::=  	GraphNode
+Verb	  ::=  	VarOrIRIref | 'a'
+TriplesNode	  ::=  	Collection |	BlankNodePropertyList
+BlankNodePropertyList	  ::=  	'[' PropertyListNotEmpty ']'
+Collection	  ::=  	'(' GraphNode+ ')'
+GraphNode	  ::=  	VarOrTerm |	TriplesNode
+VarOrTerm	  ::=  	Var | GraphTerm
+VarOrIRIref	  ::=  	Var | IRIref
+Var	  ::=  	VAR1 | VAR2
+GraphTerm	  ::=  	IRIref |	RDFLiteral |	NumericLiteral |	BooleanLiteral |	BlankNode |	NIL
+Expression	  ::=  	ConditionalOrExpression
+ConditionalOrExpression	  ::=  	ConditionalAndExpression ( '||' ConditionalAndExpression )*
+ConditionalAndExpression	  ::=  	ValueLogical ( '&&' ValueLogical )*
+ValueLogical	  ::=  	RelationalExpression
+RelationalExpression	  ::=  	NumericExpression ( '::=' NumericExpression | '!::=' NumericExpression | '<' NumericExpression | '>' NumericExpression | '<::=' NumericExpression | '>::=' NumericExpression )?
+NumericExpression	  ::=  	AdditiveExpression
+AdditiveExpression	  ::=  	MultiplicativeExpression ( '+' MultiplicativeExpression | '-' MultiplicativeExpression | NumericLiteralPositive | NumericLiteralNegative )*
+MultiplicativeExpression	  ::=  	UnaryExpression ( '*' UnaryExpression | '/' UnaryExpression )*
+UnaryExpression	  ::=  	  '!' PrimaryExpression 
+                                  |	'+' PrimaryExpression 
+                                  |	'-' PrimaryExpression 
+                                  |	PrimaryExpression
+PrimaryExpression	  ::=  	BrackettedExpression | BuiltInCall | IRIrefOrFunction | RDFLiteral | NumericLiteral | BooleanLiteral | Var
+BrackettedExpression	  ::=  	'(' Expression ')'
+BuiltInCall	  ::=  	  'STR' '(' Expression ')' 
+                              |	'LANG' '(' Expression ')' 
+                              |	'LANGMATCHES' '(' Expression ',' Expression ')' 
+                              |	'DATATYPE' '(' Expression ')' 
+                              |	'BOUND' '(' Var ')' 
+                              |	'sameTerm' '(' Expression ',' Expression ')' 
+                              |	'isIRI' '(' Expression ')' 
+                              |	'isURI' '(' Expression ')' 
+                              |	'isBLANK' '(' Expression ')' 
+                              |	'isLITERAL' '(' Expression ')' 
+                              |	RegexExpression
+RegexExpression	  ::=  	'REGEX' '(' Expression ',' Expression ( ',' Expression )? ')'
+IRIrefOrFunction	  ::=  	IRIref ArgList?
+RDFLiteral	  ::=  	String ( LANGTAG | ( '^^' IRIref ) )?
+NumericLiteral	  ::=  	NumericLiteralUnsigned | NumericLiteralPositive | NumericLiteralNegative
+NumericLiteralUnsigned	  ::=  	INTEGER |	DECIMAL |	DOUBLE
+NumericLiteralPositive	  ::=  	INTEGER_POSITIVE |	DECIMAL_POSITIVE |	DOUBLE_POSITIVE
+NumericLiteralNegative	  ::=  	INTEGER_NEGATIVE |	DECIMAL_NEGATIVE |	DOUBLE_NEGATIVE
+BooleanLiteral	  ::=  	'true' |	'false'
+SpatialVectorLiteral ::= WKTLiteral | GMLLiteral | KMLLiteral | GPXLiteral | PolylineLiteral | GeoJSONLiteral | GeoHashLiteral | TopoJSONLiteral | HexWKBLiteral 
+WKTLiteral	  ::=  	<http://www.opengis.net/def/crs/EPSG/0/EPSGCODE> WKTDescription  '^^' geo:wktLiteral
+WKTDescription ::= EBNF Notation for WKT (cf. \cref{lst:wktebnf})
+GMLLiteral ::= GMLDescription '^^' geo:gmlLiteral
+GMLDescription ::= GMLEBNF	
+KMLLiteral ::= KMLDescription '^^' geo:kmlLiteral
+KMLDescription ::= KMLEBNF
+GPXLiteral ::= GPXDescription '^^' geo:gpxLiteral
+GPXDescription ::= GPXEBNF
+PolylineLiteral ::= PolylineDescription '^^' geo:polylineLiteral
+PolylineDescription ::= POLYLINEEBNF
+GeoHashLiteral ::= GeoHashDescription '^^' geo:geohashLiteral
+GeoHashDescription ::= GEOHASHEBNF		
+GeoJSONLiteral ::= GeoJSONDescription '^^' geo:geojsonLiteral
+GeoJSONDescription ::= GEOJSONEBNF \cite{crockford2006rfc}	
+TopoJSONLiteral ::= TopoJSONDescription '^^' geo:topojsonLiteral
+TopoJSONDescription ::= TopoJSONEBNF \cite{crockford2006rfc}	
+WKBLiteral ::= WKBDescription '^^' geo:wkbLiteral
+WKBDescription ::= BINARY	
+HexWKBLiteral ::= HexWKBDescription '^^' geo:hexWKBLiteral
+HexWKBDescription ::= HEXADECIMAL	
+GeoURILiteral ::= geo:LAT,LON '^^' geo:geoURILiteral
+SVGLiteral ::= SVGDesription '^^' geo:svgLiteral
+SVGDescription ::= SVGEBNF 
+RasterLiteral ::= GeoTIFFLiteral | GMLCOVLiteral | COVJSONLiteral | RastWKBLiteral 
+GeoTIFFLiteral ::= GeoTIFFDescription '^^' geo:geotiffLiteral
+GeoTIFFDescription ::= BINARY
+GMLCOVLiteral ::= GMLCOVDescription '^^' geo:gmlCOVLiteral
+GMLCOVDescription ::= GMLEBNF
+COVJSONLiteral ::= COVJSONDescription '^^' geo:covJSONLiteral
+COVJSONDescription ::= COVJSONEBNF	\cite{crockford2006rfc}	
+RastWKBLiteral ::= RastWKBDescription '^^' geo:rastWKBLiteral
+RastWKBDescription ::= RastWKBEBNF		
+String	  ::=  	STRING_LITERAL1 | STRING_LITERAL2 | STRING_LITERAL_LONG1 | STRING_LITERAL_LONG2
+IRIref	  ::=  	IRI_REF |	PrefixedName
+PrefixedName	  ::=  	PNAME_LN | PNAME_NS
+BlankNode	  ::=  	BLANK_NODE_LABEL |	ANON
+
+
+IRI_REF	  ::=  	'<' ([^<>"{}|^`\]-[#x00-#x20])* '>'
+PNAME_NS	  ::=  	PN_PREFIX? ':'
+PNAME_LN	  ::=  	PNAME_NS PN_LOCAL
+BLANK_NODE_LABEL	  ::=  	'_:' PN_LOCAL
+VAR1	  ::=  	'?' VARNAME
+VAR2	  ::=  	'$' VARNAME
+RASTERVAR	  ::=  	'%' VARNAME
+LANGTAG	  ::=  	'@' [a-zA-Z]+ ('-' [a-zA-Z0-9]+)*
+INTEGER	  ::=  	[0-9]+
+DECIMAL	  ::=  	[0-9]+ '.' [0-9]* | '.' [0-9]+
+DOUBLE	  ::=  	[0-9]+ '.' [0-9]* EXPONENT | '.' ([0-9])+ EXPONENT | ([0-9])+ EXPONENT
+EPSGCODE ::= INTEGER
+LAT ::= DOUBLE
+LON ::= DOUBLE
+INTEGER_POSITIVE	  ::=  	'+' INTEGER
+DECIMAL_POSITIVE	  ::=  	'+' DECIMAL
+DOUBLE_POSITIVE	  ::=  	'+' DOUBLE
+INTEGER_NEGATIVE	  ::=  	'-' INTEGER
+DECIMAL_NEGATIVE	  ::=  	'-' DECIMAL
+DOUBLE_NEGATIVE	  ::=  	'-' DOUBLE
+BINARY ::= [0-1]+
+EXPONENT	  ::=  	[eE] [+-]? [0-9]+
+STRING_LITERAL1	  ::=  	"'" ( ([^#x27#x5C#xA#xD]) | ECHAR )* "'"
+STRING_LITERAL2	  ::=  	'"' ( ([^#x22#x5C#xA#xD]) | ECHAR )* '"'
+STRING_LITERAL_LONG1	  ::=  	"'''" ( ( "'" | "''" )? ( [^'\] | ECHAR ) )* "'''"
+STRING_LITERAL_LONG2	  ::=  	'"""' ( ( '"' | '""' )? ( [^"\] | ECHAR ) )* '"""'
+ECHAR	  ::=  	'\' [tbnrf\"']
+NIL	  ::=  	'(' WS* ')'
+WS	  ::=  	#x20 | #x9 | #xD | #xA
+ANON	  ::=  	'[' WS* ']'
+PN_CHARS_BASE	  ::=  	[A-Z] | [a-z] | [#x00C0-#x00D6] | [#x00D8-#x00F6] | [#x00F8-#x02FF] | [#x0370-#x037D] | [#x037F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFFFF]
+PN_CHARS_U	  ::=  	PN_CHARS_BASE | '_'
+VARNAME	  ::=  	( PN_CHARS_U | [0-9] ) ( PN_CHARS_U | [0-9] | #x00B7 | [#x0300-#x036F] | [#x203F-#x2040] )*
+PN_CHARS	  ::=  	PN_CHARS_U | '-' | [0-9] | #x00B7 | [#x0300-#x036F] | [#x203F-#x2040]
+PN_PREFIX	  ::=  	PN_CHARS_BASE ((PN_CHARS|'.')* PN_CHARS)?
+PN_LOCAL	  ::=  	( PN_CHARS_U | [0-9] ) ((PN_CHARS|'.')* PN_CHARS)?
+
+WKT ::=
+    point_text_representation |
+    curve_text_representation |
+    surface_text_representation |
+    collection_text_representation;
+
+point_text_representation ::= "POINT" [ z_m_t ] point_text;
+
+curve_text_representation ::=
+    linestring_text_representation |
+    circularstring_text_representation |
+    compoundcurve_text_representation;
+
+linestring_text_representation ::=
+    "LINESTRING" [ z_m_t ] linestring_text_body;
+
+circularstring_text_representation ::=
+    "CIRCULARSTRING" [ z_m_t ] circularstring_text;
+
+compoundcurve_text_representation ::=
+    "COMPOUNDCURVE" [ z_m_t ] compoundcurve_text;
+
+surface_text_representation ::=
+    curvepolygon_text_representation;
+
+curvepolygon_text_representation ::=
+    "CURVEPOLYGON" [ z_m_t ] curvepolygon_text_body |
+    polygon_text_representation |
+    triangle_text_representation;
+
+polygon_text_representation ::=
+    "POLYGON" [ z_m_t ] polygon_text_body;
+
+triangle_text_representation ::=
+    "TRIANGLE" [ z_m_t ] triangle_text_body;
+
+collection_text_representation ::=
+    multipoint_text_representation |
+    multicurve_text_representation |
+    multisurface_text_representation |
+    geometrycollection_text_representation;
+
+multipoint_text_representation ::=
+    "MULTIPOINT" [ z_m_t ] multipoint_text;
+
+multicurve_text_representation ::=
+    "MULTICURVE" [ z_m_t ] multicurve_text |
+    multilinestring_text_representation;
+
+multilinestring_text_representation ::=
+    "MULTILINESTRING" [ z_m_t ] multilinestring_text;
+
+multisurface_text_representation ::=
+    "MULTISURFACE" [ z_m_t ] multisurface_text |
+    multipolygon_text_representation |
+    polyhedralsurface_text_representation |
+    tin_text_representation;
+
+multipolygon_text_representation ::=
+    "MULTIPOLYGON" [ z_m_t ] multipolygon_text;
+
+polyhedralsurface_text_representation ::=
+    "POLYHEDRALSURFACE" [ z_m_t ] polyhedralsurface_text;
+
+tin_text_representation ::=
+    "TIN" [ z_m_t ] tin_text;
+
+geometrycollection_text_representation ::=
+    "GEOMETRYCOLLECTION" [ z_m_t ] geometrycollection_text;
+
+linestring_text_body ::=
+    linestring_text;
+
+curvepolygon_text_body ::=
+    curvepolygon_text;
+
+polygon_text_body ::=
+    polygon_text;
+
+triangle_text_body ::=
+    triangle_text;
+
+point_text ::=
+    empty_set |
+    left_paren point right_paren;
+
+point ::= x y [ z ] [ m ] [ t ];
+
+x ::= number;
+y ::= number;
+z ::= number;
+m ::= number;
+t::= date
+
+linestring_text ::=
+    empty_set |
+    left_paren point { comma point } right_paren;
+
+circularstring_text ::=
+    empty_set |
+    left_paren point { comma point } right_paren;
+
+compoundcurve_text ::=
+    empty_set |
+    left_paren single_curve_text { comma single_curve_text } right_paren;
+
+single_curve_text ::=
+    linestring_text_body |
+    circularstring_text_representation;
+
+curve_text ::=
+    linestring_text_body |
+    circularstring_text_representation |
+    compoundcurve_text_representation;
+
+ring_text ::=
+    linestring_text_body |
+    circularstring_text_representation |
+    compoundcurve_text_representation;
+
+surface_text ::=
+    "CURVEPOLYGON" curvepolygon_text_body |
+    polygon_text_body;
+
+curvepolygon_text ::=
+    empty_set |
+    left_paren ring_text { comma ring_text } right_paren;
+
+polygon_text ::=
+    empty_set |
+    left_paren linestring_text { comma linestring_text } right_paren;
+
+triangle_text ::=
+    empty_set |
+    left_paren linestring_text right_paren;
+
+multipoint_text ::=
+    empty_set |
+    left_paren point_text { comma point_text  } right_paren;
+
+multicurve_text ::=
+    empty_set |
+    left_paren curve_text { comma curve_text } right_paren;
+
+multilinestring_text ::=
+    empty_set |
+    left_paren linestring_text_body { comma linestring_text_body } right_paren;
+
+multisurface_text ::=
+    empty_set |
+    left_paren surface_text { comma surface_text } right_paren;
+
+multipolygon_text ::=
+    empty_set |
+    left_paren polygon_text_body { comma polygon_text_body } right_paren;
+
+polyhedralsurface_text ::=
+    empty_set |
+    left_paren polygon_text_body { comma polygon_text_body } right_paren;
+
+tin_text ::=
+    empty_set |
+    left_paren triangle_text_body { comma triangle_text_body } right_paren;
+
+geometrycollection_text ::=
+    empty_set |
+    left_paren well_known_text_representation { comma well_known_text_representation } right_paren;
+
+empty_set ::= "EMPTY";
+
+z_m ::= "ZM" | "Z" | "M" | "T" | "ZMT" | "ZT";
+left_paren ::= "(";
+right_paren ::= ")";
+number ::= ?/[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?/? ;
+comma ::=',';
+
+/* Note that SPARQL local names allow leading digits while XML local names do not. */
+ 
