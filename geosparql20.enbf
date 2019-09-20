@@ -82,7 +82,7 @@ NumericLiteralNegative	  ::=  	INTEGER_NEGATIVE |	DECIMAL_NEGATIVE |	DOUBLE_NEGA
 BooleanLiteral	  ::=  	'true' |	'false'
 SpatialVectorLiteral ::= WKTLiteral | GMLLiteral | KMLLiteral | GPXLiteral | PolylineLiteral | GeoJSONLiteral | GeoHashLiteral | TopoJSONLiteral | HexWKBLiteral 
 WKTLiteral	  ::=  	<http://www.opengis.net/def/crs/EPSG/0/EPSGCODE> WKTDescription  '^^' geo:wktLiteral
-WKTDescription ::= EBNF Notation for WKT (cf. \cref{lst:wktebnf})
+WKTDescription ::= WKT
 GMLLiteral ::= GMLDescription '^^' geo:gmlLiteral
 GMLDescription ::= GMLEBNF	
 KMLLiteral ::= KMLDescription '^^' geo:kmlLiteral
@@ -139,7 +139,7 @@ DOUBLE_POSITIVE	  ::=  	'+' DOUBLE
 INTEGER_NEGATIVE	  ::=  	'-' INTEGER
 DECIMAL_NEGATIVE	  ::=  	'-' DECIMAL
 DOUBLE_NEGATIVE	  ::=  	'-' DOUBLE
-BINARY ::= [0-1]+
+BINARY ::= [01]+
 EXPONENT	  ::=  	[eE] [+-]? [0-9]+
 STRING_LITERAL1	  ::=  	"'" ( ([^#x27#x5C#xA#xD]) | ECHAR )* "'"
 STRING_LITERAL2	  ::=  	'"' ( ([^#x22#x5C#xA#xD]) | ECHAR )* '"'
@@ -331,6 +331,54 @@ left_paren ::= "(";
 right_paren ::= ")";
 number ::= ?/[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?/? ;
 comma ::=',';
+
+
+{Unescaped} = {All Valid} - {&1 .. &19} - ["\]
+{Hex} = {Digit} + [ABCDEFabcdef]
+{Digit9} = {Digit} - [0]
+
+! ------------------------------------------------- Terminals
+
+Number = '-'?('0'|{Digit9}{Digit}*)('.'{Digit}+)?([Ee][+-]?{Digit}+)?
+String = '"'({Unescaped}|'\'(["\/bfnrt]|'u'{Hex}{Hex}{Hex}{Hex}))*'"'
+
+! ------------------------------------------------- Rules
+
+GEOJSON ::= GEOJSONGEOMETRY
+
+GEOJSONGEOMETRY  ::= '{ type:GEOMETRYTYPE ',' coordinates:  '}' 
+
+GEOMETRYTYPE  ::= 'Point' | 'LineString' | 'Polygon' | 'MultiLineString' | 'MultiPolygon' | 'MultiPoint' 
+
+POINT ::= '"type":"Point", "coordinates":'COORDINATE 
+
+LINESTRING ::= '"type":"LineString", "coordinates":' COORDINATE 
+
+COORDINATE: '['LAT,LON']'
+
+COORDINATES ::= text
+
+OBJECT ::= '{' '}'
+           | '{' MEMBERS '}'
+
+MEMBERS ::= PAIR
+            | PAIR ',' MEMBERS
+
+PAIR ::= String ':' VALUE
+
+ARRAY ::= '[' ']'
+          | '[' ELEMENTS ']'
+
+ELEMENTS ::= VALUE
+             | VALUE ',' ELEMENTS
+
+VALUE ::= String
+          | Number
+          | OBJECT
+          | ARRAY
+          | true
+          | false
+          | null
 
 /* Note that SPARQL local names allow leading digits while XML local names do not. */
  
